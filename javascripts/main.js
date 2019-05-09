@@ -24,7 +24,7 @@ const app = new Vue({
   methods: {
     doAdd: function(event, value) {
       // ref で名前を付けておいた要素を参照
-      var comment = this.$refs.comment
+      const comment = this.$refs.comment
 
       // 入力がなければ何もしないで return
       if (!comment.value.length) {
@@ -42,7 +42,18 @@ const app = new Vue({
 
       // フォーム要素を空にする
       comment.value = ''
+    },
+    doChangeState: function(item) {
+      item.state = item.state ? 0 : 1
+    },
+    doRemove: function(item) {
+      const index = this.todos.indexOf(item)
+      this.todos.splice(index, 1)
     }
+  },
+  created() {
+    // インスタンス作成時に自動的に fetch() する
+    this.todos = todoStorage.fetch()
   },
   watch: {
     // オプションを使う場合はオブジェクト形式にする
