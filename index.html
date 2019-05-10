@@ -7,8 +7,17 @@
 </head>
 <body>
   <div id="app">
+    <h1>チュートリアルToDoリスト</h1>
+    <label v-for="label in options">
+        <input type="radio"
+            v-model="current"
+            v-bind:value="label.value">{{ label.label }}
+    </label>
+    
+    <span class="u-fwB">({{ computedTodos.length }}件を表示中)</span>
+
     <table>
-        <thead>
+        <thead v-pre>
             <tr>
                 <th class="id">ID</th>
                 <th class="comment">コメント</th>
@@ -17,15 +26,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="item in todos" v-bind:key="item.id">
+            <tr v-for="item in computedTodos" v-bind:key="item.id">
                 <th>{{ item.id }}</th>
                 <td>{{ item.comment }}</td>
-                <td class="state">
+                <td>
                     <button v-on:click="doChangeState(item)">
-                      {{ item.state }}
+                      {{ labels[item.state] }}
                     </button>
                 </td>
-                <td class="button">
+                <td>
                     <button v-on:click="doRemove(item)">
                       削除
                     </button>
