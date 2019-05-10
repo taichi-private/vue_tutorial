@@ -3,53 +3,56 @@
 <head>
   <meta charset="utf-8">
   <title>Vue.js App</title>
-  <link rel="stylesheet" href="./stylesheets/main.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/reset.css">
 </head>
 <body>
-  <div id="app">
-    <h1>チュートリアルToDoリスト</h1>
-    <label v-for="label in options">
-        <input type="radio"
-            v-model="current"
-            v-bind:value="label.value">{{ label.label }}
-    </label>
-    
-    <span class="u-fwB">({{ computedTodos.length }}件を表示中)</span>
+  <div class="l-content">
+    <div id="app">
+        <h1 class="c-heading u-mB20">My ToDos</h1>
+        <label class="u-cP" v-for="label in options" v-bind:for=`label_${label.value}`>
+            <input type="radio"
+                v-model="current"
+                v-bind:value="label.value"
+                v-bind:id=`label_${label.value}`>{{ label.label }}
+        </label>
+        
+        <span class="u-fwB">({{ computedTodos.length }}件を表示中)</span>
 
-    <table>
-        <thead v-pre>
-            <tr>
-                <th class="id">ID</th>
-                <th class="comment">コメント</th>
-                <th class="state">状態</th>
-                <th class="button">-</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="item in computedTodos" v-bind:key="item.id">
-                <th>{{ item.id }}</th>
-                <td>{{ item.comment }}</td>
-                <td>
-                    <button v-on:click="doChangeState(item)">
-                      {{ labels[item.state] }}
-                    </button>
-                </td>
-                <td>
-                    <button v-on:click="doRemove(item)">
-                      削除
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <table class="c-table u-mT20 u-mB20">
+            <thead v-pre>
+                <tr>
+                    <th class="c-table__head">ID</th>
+                    <th class="c-table__head">コメント</th>
+                    <th class="c-table__head">状態</th>
+                    <th class="c-table__head">削除</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="c-table__row" v-for="item in computedTodos" v-bind:key="item.id">
+                    <th class="c-table__head">{{ item.id }}</th>
+                    <td class="c-table__content c-table__content--text">{{ item.comment }}</td>
+                    <td class="c-table__content">
+                        <button class="c-button" v-on:click="doChangeState(item)">
+                        {{ labels[item.state] }}
+                        </button>
+                    </td>
+                    <td class="c-table__content">
+                        <button class="c-button c-button--red" v-on:click="doRemove(item)">
+                        削除
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-    <h2>新しい作業の追加</h2>
-    <form class="add-form" v-on:submit.prevent="doAdd">
-      <span>コメント：</span>
-      <input type="text" ref="comment">
-      <button type="submit">追加</button>
-    </form>
-
+        <h2>新しい作業の追加</h2>
+        <form class="add-form" v-on:submit.prevent="doAdd">
+        <span>コメント：</span>
+        <input type="text" ref="comment">
+        <button type="submit">追加</button>
+        </form>
+    </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   <script src="./javascripts/main.js"></script>

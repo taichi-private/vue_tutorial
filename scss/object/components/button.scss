@@ -1,0 +1,17 @@
+.c-button {
+  padding: 4px;
+  border: 1px solid #d4d4d4;;
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.6;
+  }
+
+  &--red {
+    border: 0;
+    color: #fff;
+    background: #ff0000;
+  }
+}

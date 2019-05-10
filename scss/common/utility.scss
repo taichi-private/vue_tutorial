@@ -1,0 +1,33 @@
+@for $i from 0 through 40 {
+  // margin
+  .u-mT#{$i * 4} {
+    margin-top: #{$i * 4}px !important;
+  }
+  .u-mR#{$i * 4} {
+    margin-right: #{$i * 4}px !important;
+  }
+  .u-mB#{$i * 4} {
+    margin-bottom: #{$i * 4}px !important;
+  }
+  .u-mL#{$i * 4} {
+    margin-left: #{$i * 4}px !important;
+  }
+
+  // padding
+  .u-pT#{$i * 4} {
+    padding-top: #{$i * 4}px !important;
+  }
+  .u-pR#{$i * 4} {
+    padding-right: #{$i * 4}px !important;
+  }
+  .u-pB#{$i * 4} {
+    padding-bottom: #{$i * 4}px !important;
+  }
+  .u-pL#{$i * 4} {
+    padding-left: #{$i * 4}px !important;
+  }
+}
+
+.u-cP {
+  cursor: pointer;
+}
